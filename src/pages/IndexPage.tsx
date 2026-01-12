@@ -1,7 +1,10 @@
+import ActionBar from '@/components/common/ActionBar'
+
 function IndexPage() {
   return (
     <>
-      <h1>Club Lelo's</h1>
+      {/* Searchbar and action buttons */}
+      <ActionBar />
     </>
   )
 }
