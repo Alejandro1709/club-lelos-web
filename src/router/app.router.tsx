@@ -1,8 +1,9 @@
 import { createBrowserRouter } from 'react-router'
+import IndexPage from '../pages/IndexPage'
 
 export const appRouter = createBrowserRouter([
   {
     path: '/',
-    element: <h1>Club Lelo's</h1>,
+    element: <IndexPage />,
   },
 ])
