@@ -1,15 +1,16 @@
-import { ChevronRight } from 'lucide-react'
 import { Link } from 'react-router'
+import type { ISport } from '@/types/sport'
+import { ChevronRight } from 'lucide-react'
 
 interface SportCardProps {
-  sport: { id: number; title: string; description: string }
+  sport: ISport
   index?: number
 }
 
 function SportCard({ sport, index = 0 }: SportCardProps) {
   return (
     <Link
-      to={`/sports/${sport.id}`}
+      to={`/sports/${sport.slug}`}
       className="animate-fade-in-up"
       style={{ animationDelay: `${300 + index * 100}ms` }}
     >
