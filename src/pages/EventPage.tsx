@@ -3,7 +3,7 @@ import { sportsData } from '@/data/sports.data'
 import { ArrowLeft, Clock, MapPin, Users } from 'lucide-react'
 import { useNavigate, useParams } from 'react-router'
 
-function SportPage() {
+function EventPage() {
   const { slug } = useParams()
 
   const navigate = useNavigate()
@@ -14,7 +14,7 @@ function SportPage() {
     return (
       <div className="bg-background flex items-center justify-center">
         <div className="text-center space-y-4">
-          <p className="text-muted-foreground">Sport not found</p>
+          <p className="text-muted-foreground">Event not found</p>
           <Button variant="outline" onClick={() => navigate('/')}>
             Go back home
           </Button>
@@ -98,4 +98,4 @@ function SportPage() {
   )
 }
 
-export default SportPage
+export default EventPage
