@@ -1,11 +1,13 @@
+import type { User as UserType } from '@/types/auth'
 import { User } from 'lucide-react'
 import { Link } from 'react-router'
 
 interface Props {
   title: string
+  user: UserType
 }
 
-function Header({ title }: Props) {
+function Header({ title, user }: Props) {
   return (
     <header className="flex items-center justify-between mb-8 animate-fade-in">
       <Link className="hover:underline" to="/">
@@ -18,7 +20,7 @@ function Header({ title }: Props) {
         <div className="h-8 w-8 rounded-full bg-secondary flex items-center justify-center">
           <User className="h-4 w-4 text-muted-foreground" />
         </div>
-        <span className="text-sm font-medium hidden sm:block">Admin user</span>
+        <span className="text-sm font-medium hidden sm:block">{user.name}</span>
       </div>
     </header>
   )
