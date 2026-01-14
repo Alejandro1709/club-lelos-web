@@ -1,13 +1,13 @@
-import { Link } from 'react-router'
-import { ChevronRight } from 'lucide-react'
 import type { IEvent } from '@/types/event'
+import { ChevronRight } from 'lucide-react'
+import { Link } from 'react-router'
 
-interface SportCardProps {
+interface Props {
   event: IEvent
   index?: number
 }
 
-function SportCard({ event, index = 0 }: SportCardProps) {
+function EventCard({ event, index = 0 }: Props) {
   return (
     <Link
       to={`/events/${event._id}`}
@@ -35,4 +35,4 @@ function SportCard({ event, index = 0 }: SportCardProps) {
   )
 }
 
-export default SportCard
+export default EventCard
