@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router'
+import { createBrowserRouter, Navigate } from 'react-router'
 import IndexPage from '@/pages/IndexPage'
 import AppLayout from '@/layouts/AppLayout'
 import NotFoundPage from '@/pages/NotFoundPage'
@@ -40,7 +40,7 @@ export const appRouter = createBrowserRouter([
       },
       {
         path: '*',
-        element: <NotFoundPage />,
+        element: <Navigate to="/auth/login" />,
       },
     ],
   },
