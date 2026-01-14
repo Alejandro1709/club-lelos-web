@@ -1,14 +1,29 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useMutation } from '@tanstack/react-query'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ArrowRight, Eye, EyeOff } from 'lucide-react'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { loginUser } from '@/actions/login.action'
+import { toast } from 'react-toastify'
 import * as z from 'zod'
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false)
+
+  const { mutate } = useMutation({
+    mutationKey: ['login'],
+    mutationFn: loginUser,
+    onError: (error) => {
+      toast.error(error.message)
+    },
+    onSuccess: (data) => {
+      console.log(data)
+      toast.success('Logged in')
+    },
+  })
 
   const LoginUserSchema = z.object({
     email: z.email({ error: 'Please enter a valid email address' }),
@@ -28,7 +43,7 @@ function LoginForm() {
   })
 
   const handleLogin = (formData: LoginUserSchemaType) => {
-    console.log(formData)
+    mutate(formData)
   }
 
   return (

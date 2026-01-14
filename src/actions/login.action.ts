@@ -1,4 +1,5 @@
 import { leloApi } from '@/api/lelo.api'
+import { isAxiosError } from 'axios'
 
 export const loginUser = async (formData: {
   email: string
@@ -15,6 +16,8 @@ export const loginUser = async (formData: {
 
     return data
   } catch (error) {
-    console.log(error)
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error)
+    }
   }
 }

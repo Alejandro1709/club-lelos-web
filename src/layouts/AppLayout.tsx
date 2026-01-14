@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router'
+import { ToastContainer } from 'react-toastify'
 import Header from '@/components/common/Header'
 
 function AppLayout() {
@@ -9,6 +10,7 @@ function AppLayout() {
 
         <Outlet />
       </div>
+      <ToastContainer />
     </div>
   )
 }
