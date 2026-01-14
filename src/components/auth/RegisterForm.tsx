@@ -23,7 +23,7 @@ function RegisterForm() {
       toast.error(error.message)
     },
     onSuccess: (data) => {
-      toast.success(data.message)
+      toast.success(data?.message)
 
       navigate('/auth/login')
     },

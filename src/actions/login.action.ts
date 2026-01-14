@@ -12,7 +12,13 @@ export const loginUser = async (formData: {
   }
 
   try {
-    const { data } = await leloApi.post('/auth/login', formData, config)
+    const { data } = await leloApi.post<{ token: string }>(
+      '/auth/login',
+      formData,
+      config
+    )
+
+    localStorage.setItem('token', data.token)
 
     return data
   } catch (error) {

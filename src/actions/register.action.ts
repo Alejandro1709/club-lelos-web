@@ -13,7 +13,7 @@ export const registerUser = async (formData: {
   }
 
   try {
-    const { data } = await leloApi.post(
+    const { data } = await leloApi.post<{ message: string }>(
       '/auth/create-account',
       formData,
       config

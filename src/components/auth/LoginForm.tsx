@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useMutation } from '@tanstack/react-query'
+import { useNavigate } from 'react-router'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -13,15 +14,18 @@ import * as z from 'zod'
 function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false)
 
+  const navigate = useNavigate()
+
   const { mutate } = useMutation({
     mutationKey: ['login'],
     mutationFn: loginUser,
     onError: (error) => {
       toast.error(error.message)
     },
-    onSuccess: (data) => {
-      console.log(data)
+    onSuccess: () => {
       toast.success('Logged in')
+
+      navigate('/')
     },
   })
 
