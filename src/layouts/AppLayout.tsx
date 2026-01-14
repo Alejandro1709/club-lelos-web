@@ -6,8 +6,15 @@ import useAuth from '@/hooks/useAuth'
 function AppLayout() {
   const { data, isLoading, isError } = useAuth()
 
-  if (isLoading) return 'Loading...'
-
+  if (isLoading) {
+    return (
+      <div className="bg-background flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    )
+  }
   if (isError) {
     return <Navigate to="/auth/login" />
   }

@@ -2,7 +2,7 @@ import { createBrowserRouter, Navigate } from 'react-router'
 import IndexPage from '@/pages/IndexPage'
 import AppLayout from '@/layouts/AppLayout'
 import NotFoundPage from '@/pages/NotFoundPage'
-import SportPage from '@/pages/SportPage'
+import EventPage from '@/pages/EventPage'
 import AuthLayout from '@/layouts/AuthLayout'
 import LoginPage from '@/pages/LoginPage'
 import RegisterPage from '@/pages/RegisterPage'
@@ -17,8 +17,8 @@ export const appRouter = createBrowserRouter([
         element: <IndexPage />,
       },
       {
-        path: 'sports/:slug',
-        element: <SportPage />,
+        path: 'events/:id',
+        element: <EventPage />,
       },
       {
         path: '*',

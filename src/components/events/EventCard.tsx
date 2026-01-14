@@ -1,16 +1,16 @@
-import { Link } from 'react-router'
-import type { ISport } from '@/types/sport'
+import type { IEvent } from '@/types/event'
 import { ChevronRight } from 'lucide-react'
+import { Link } from 'react-router'
 
-interface SportCardProps {
-  sport: ISport
+interface Props {
+  event: IEvent
   index?: number
 }
 
-function SportCard({ sport, index = 0 }: SportCardProps) {
+function EventCard({ event, index = 0 }: Props) {
   return (
     <Link
-      to={`/sports/${sport.slug}`}
+      to={`/events/${event._id}`}
       className="animate-fade-in-up"
       style={{ animationDelay: `${300 + index * 100}ms` }}
     >
@@ -21,10 +21,10 @@ function SportCard({ sport, index = 0 }: SportCardProps) {
         <div className="flex items-start justify-between">
           <div className="space-y-2">
             <h3 className="text-xl font-semibold text-card-foreground group-hover:text-foreground transition-colors">
-              {sport.title}
+              {event.title}
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              {sport.description}
+              {event.description}
             </p>
           </div>
           <ChevronRight className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200" />
@@ -35,4 +35,4 @@ function SportCard({ sport, index = 0 }: SportCardProps) {
   )
 }
 
-export default SportCard
+export default EventCard
