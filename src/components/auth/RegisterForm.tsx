@@ -1,14 +1,33 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router'
+import { useMutation } from '@tanstack/react-query'
 import { ArrowRight, Eye, EyeOff } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { registerUser } from '@/actions/register.action'
+import { toast } from 'react-toastify'
 import * as z from 'zod'
 
 function RegisterForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false)
+
+  const navigate = useNavigate()
+
+  const { mutate } = useMutation({
+    mutationKey: ['register'],
+    mutationFn: registerUser,
+    onError: (error) => {
+      toast.error(error.message)
+    },
+    onSuccess: (data) => {
+      toast.success(data.message)
+
+      navigate('/auth/login')
+    },
+  })
 
   const RegisterUserSchema = z.object({
     name: z.string().min(1, { error: 'Please enter your name' }),
@@ -29,7 +48,7 @@ function RegisterForm() {
   })
 
   const handleRegister = (formData: RegisterUserSchemaType) => {
-    console.log(formData)
+    mutate(formData)
   }
   return (
     <form
