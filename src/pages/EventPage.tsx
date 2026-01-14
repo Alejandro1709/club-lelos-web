@@ -1,16 +1,45 @@
+import { getEvent } from '@/actions/get-event.action'
 import { Button } from '@/components/ui/button'
-import { sportsData } from '@/data/sports.data'
+import { useQuery } from '@tanstack/react-query'
 import { ArrowLeft, Clock, MapPin, Users } from 'lucide-react'
 import { useNavigate, useParams } from 'react-router'
 
 function EventPage() {
-  const { slug } = useParams()
+  const { id } = useParams()
 
   const navigate = useNavigate()
 
-  const sport = sportsData.find((s) => s.slug === slug)
+  const {
+    data: event,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ['event', id],
+    queryFn: () => getEvent(id as string),
+  })
 
-  if (!sport) {
+  if (isLoading) {
+    return (
+      <div className="bg-background flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (isError) {
+    return (
+      <div className="bg-background flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <p className="text-muted-foreground">{error.message}</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!event) {
     return (
       <div className="bg-background flex items-center justify-center">
         <div className="text-center space-y-4">
@@ -35,10 +64,10 @@ function EventPage() {
 
       <header className="space-y-4 my-12 animate-fade-in">
         <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
-          {sport.title}
+          {event.title}
         </h1>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-          {sport.description}
+          {event.description}
         </p>
       </header>
 
@@ -56,7 +85,7 @@ function EventPage() {
             </span>
           </div>
           <p className="text-lg font-semibold text-card-foreground">
-            Alameda Sur
+            {event.location}
           </p>
         </div>
 
@@ -73,7 +102,7 @@ function EventPage() {
             </span>
           </div>
           <p className="text-lg font-semibold text-card-foreground">
-            8 personas
+            {event.maxPersonCount} personas
           </p>
         </div>
 

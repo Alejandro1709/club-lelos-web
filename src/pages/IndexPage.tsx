@@ -9,7 +9,15 @@ function IndexPage() {
     queryFn: getEvents,
   })
 
-  if (isLoading) return 'Loading...'
+  if (isLoading) {
+    return (
+      <div className="bg-background flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <>

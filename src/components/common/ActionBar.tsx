@@ -18,9 +18,9 @@ function ActionBar() {
           className="font-medium text-sm px-4 py-2.5 h-auto gap-2 shadow-soft hover:shadow-soft-lg transition-all duration-200 cursor-pointer"
           asChild
         >
-          <Link to="/sports/new">
+          <Link to="/events/new">
             <Plus className="h-4 w-4" />
-            New Sport
+            New Event
           </Link>
         </Button>
         <Button
