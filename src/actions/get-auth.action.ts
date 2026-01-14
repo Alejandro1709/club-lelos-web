@@ -3,12 +3,9 @@ import { userSchema } from '@/types/auth'
 import { isAxiosError } from 'axios'
 
 export const getAuthUser = async () => {
-  const token = localStorage.getItem('token')
-
   const config = {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
     },
   }
 
